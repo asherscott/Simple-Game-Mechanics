@@ -1,5 +1,13 @@
-* {
-    box-sizing: border-box;
+body {
+    display: flex;
+    justify-content: center;
+}
+
+#grid {
+    display: flex;
+    position: relative;
+    width: fit-content;
+    border: 5px solid darkgreen;
 }
 
 #sprite {
@@ -8,20 +16,10 @@
     z-index: 7;
 }
 
-#grid {
-    display: flex;
-    position: relative;
-    border: 5px solid darkgreen;
-}
-
-#greenTile {
+.darkerTile {
     background-color: green;
 }
 
-#lightGreenTile {
+.lighterTile {
     background-color: lightgreen;
-}
-
-canvas {
-    border: 5px solid grey;
 }

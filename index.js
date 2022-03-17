@@ -1,14 +1,25 @@
-const size = 5;
-let position = {x: 0, y: 20};
+// the size of the sprite and grid cells (vmin units)
+const size = 9;
+// dimensions of the n x n grid, (only works with odd numbers)
+const gridSize = 9;
+// initializes sprite position at the center of the grid
+let position = {
+    x: (gridSize - 1) * size / 2, 
+    y: (gridSize - 1) * size / 2
+};
 
 
 
-displayGrid();
-displaySprite();
-manualGridMovement();
-window.addEventListener('resize', changeSize)
+onStart()
 
 
+
+function onStart() {
+    displayGrid();
+    displaySprite();
+    manualGridMovement();
+    window.addEventListener('resize', changeSize)
+}
 
 function displayGrid() {
     const grid = document.createElement('div');
@@ -17,21 +28,20 @@ function displayGrid() {
 
 
 
-    let cellClass = 'greenTile';
-    let isGreen = true;
+    let cellClass = 'darkerTile';
+    let isDark = true;
 
-    for(let i = 0; i < 9; i++) {
+    for(let i = 0; i < gridSize; i++) {
         const column = document.createElement('div');
         column.className = 'column';
         grid.append(column);
 
-        for(let i = 0; i < 9; i++) {
-            isGreen = !isGreen;
-            (isGreen) ? cellClass = 'greenTile' : cellClass = 'lightGreenTile';
+        for(let i = 0; i < gridSize; i++) {
+            (isDark) ? cellClass = 'darkerTile' : cellClass = 'lighterTile';
+            isDark = !isDark;
         
             const cell = document.createElement('div');
-            cell.className = 'cell';
-            cell.id = cellClass;
+            cell.className = cellClass;
             cell.style.height = size + 'vmin';
             cell.style.width = size + 'vmin';
     
@@ -72,8 +82,7 @@ function manualGridMovement() {
 }
 
 function changeSize() {
-    const grid = document.querySelector('#grid')
-    grid.remove();
+    document.querySelector('#grid').remove();
 
     displayGrid();
     displaySprite();
@@ -85,8 +94,7 @@ function displaySprite() {
     document.querySelector('#grid').append(sprite);
 
     sprite.style.height = size + 'vmin';
-    sprite.style.width = size + 'vmin';
-
-    sprite.style.left = position.x + 'vmin';
+    sprite.style.width  = size + 'vmin';
+    sprite.style.left   = position.x + 'vmin';
     sprite.style.bottom = position.y + 'vmin';
 }
