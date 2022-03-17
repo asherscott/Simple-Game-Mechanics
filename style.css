@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+#sprite {
+    background-color: rgba(0, 0, 0, 1);
+    position: absolute;
+    z-index: 7;
+    /* height: 5vmin;
+    width: 5vmin; */
+}
+
+#grid {
+    display: flex;
+    position: relative;
+    margin: auto;
+    left: 0px;
+    bottom: 0px;
+}
+
+#greenTile {
+    background-color: green;
+}
+
+#lightGreenTile {
+    background-color: lightgreen;
+}
+
+/* .cell {
+    height: 5vmin;
+    width: 5vmin;
+} */
