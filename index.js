@@ -1,36 +1,37 @@
-const sprite = document.querySelector('#sprite');
-const size = 20;
-const position = {x: 0, y: size * 4};
-
-sprite.style.left = position.x + 'px';
-sprite.style.bottom = position.y + 'px';
-
-sprite.style.height = size + 'px';
-sprite.style.width = size + 'px';
+let size = window.innerWidth / (2 * 9);
+let position = {x: 0, y: 0};
 
 
 
 displayGrid();
+displaySprite();
 manualGridMovement();
+window.addEventListener('resize', changeSize)
 
 
 
 function displayGrid() {
-    let cellId = 'greenTile';
-    let counter = 0;
+    const grid = document.createElement('div');
+    grid.id = 'grid';
+    document.querySelector('body').append(grid);
+
+
+
+    let cellClass = 'greenTile';
+    let isGreen = true;
 
     for(let i = 0; i < 9; i++) {
         const column = document.createElement('div');
         column.className = 'column';
-        document.querySelector('#grid').append(column);
+        grid.append(column);
 
         for(let i = 0; i < 9; i++) {
-            counter++;
-            (counter % 2 === 0) ? cellId = 'greenTile' : cellId = 'lightGreenTile';
+            isGreen = !isGreen;
+            (isGreen) ? cellClass = 'greenTile' : cellClass = 'lightGreenTile';
         
             const cell = document.createElement('div');
             cell.className = 'cell';
-            cell.id = cellId;
+            cell.id = cellClass;
             cell.style.height = size + 'px';
             cell.style.width = size + 'px';
     
@@ -68,4 +69,26 @@ function manualGridMovement() {
     } 
 
     chooseDirection()
+}
+
+function changeSize() {
+    size = window.innerWidth / (2 * 9);
+
+    const grid = document.querySelector('#grid')
+    grid.remove();
+
+    displayGrid();
+    displaySprite();
+}
+
+function displaySprite() {
+    const sprite = document.createElement('div');
+    sprite.id = 'sprite';
+    document.querySelector('#grid').append(sprite);
+
+    sprite.style.left = position.x + 'px';
+    sprite.style.bottom = position.y + 'px';
+
+    sprite.style.height = size + 'px';
+    sprite.style.width = size + 'px';
 }
