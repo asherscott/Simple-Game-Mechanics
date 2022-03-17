@@ -21,3 +21,7 @@
 #lightGreenTile {
     background-color: lightgreen;
 }
+
+canvas {
+    border: 5px solid grey;
+}

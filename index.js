@@ -1,5 +1,5 @@
-let size = window.innerWidth / (2 * 9);
-let position = {x: 0, y: 0};
+const size = 5;
+let position = {x: 0, y: 20};
 
 
 
@@ -32,8 +32,8 @@ function displayGrid() {
             const cell = document.createElement('div');
             cell.className = 'cell';
             cell.id = cellClass;
-            cell.style.height = size + 'px';
-            cell.style.width = size + 'px';
+            cell.style.height = size + 'vmin';
+            cell.style.width = size + 'vmin';
     
             column.append(cell);
         }
@@ -65,15 +65,13 @@ function manualGridMovement() {
         ? position[spriteAxis] += size
         : position[spriteAxis] -= size;
     
-        sprite.style[windowAxis] = position[spriteAxis] + 'px';
+        sprite.style[windowAxis] = position[spriteAxis] + 'vmin';
     } 
 
     chooseDirection()
 }
 
 function changeSize() {
-    size = window.innerWidth / (2 * 9);
-
     const grid = document.querySelector('#grid')
     grid.remove();
 
@@ -86,9 +84,9 @@ function displaySprite() {
     sprite.id = 'sprite';
     document.querySelector('#grid').append(sprite);
 
-    sprite.style.left = position.x + 'px';
-    sprite.style.bottom = position.y + 'px';
+    sprite.style.height = size + 'vmin';
+    sprite.style.width = size + 'vmin';
 
-    sprite.style.height = size + 'px';
-    sprite.style.width = size + 'px';
+    sprite.style.left = position.x + 'vmin';
+    sprite.style.bottom = position.y + 'vmin';
 }
