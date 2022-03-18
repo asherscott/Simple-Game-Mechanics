@@ -8,6 +8,11 @@ let position = {
     y: (gridSize - 1) * size / 2
 };
 
+const bounds = {
+    min: 0,
+    max: (gridSize - 1) * size
+}
+
 
 
 onStart();
@@ -49,18 +54,22 @@ function displayGrid() {
 function chooseDirection(event) {
     switch(event.key) {
         case 'ArrowRight':
-            move('x', 'left', true)
+            isAtBorder('x', 'max') ? null : move('x', 'left', true);
             break;
         case 'ArrowLeft':
-            move('x', 'left', false)
+            isAtBorder('x', 'min') ? null : move('x', 'left', false);
             break;
         case 'ArrowUp':
-            move('y', 'bottom', true)
+            isAtBorder('y', 'max') ? null : move('y', 'bottom', true);
             break;
         case 'ArrowDown':
-            move('y', 'bottom', false)
+            isAtBorder('y', 'min') ? null : move('y', 'bottom', false);
             break;
     }
+}
+
+function isAtBorder(axis, boundary) {
+    return (position[axis] === bounds[boundary]) ? true : false;
 }
 
 function move(spriteAxis, windowAxis, moveMaxy) {
@@ -69,7 +78,7 @@ function move(spriteAxis, windowAxis, moveMaxy) {
     : position[spriteAxis] -= size;
 
     sprite.style[windowAxis] = position[spriteAxis] + 'vmin';
-} 
+}
 
 function changeSize() {
     document.querySelector('#grid').remove();
