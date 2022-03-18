@@ -7,11 +7,11 @@ body {
     display: flex;
     position: relative;
     width: fit-content;
-    border: 5px solid darkgreen;
+    border: 2vmin solid darkgreen;
 }
 
 #sprite {
-    background-color: black;
+    /* background-color: black; */
     position: absolute;
     z-index: 7;
 }
@@ -22,4 +22,9 @@ body {
 
 .lighterTile {
     background-color: lightgreen;
+}
+
+img {
+    max-width: 500px;
+    max-height: 500px;
 }

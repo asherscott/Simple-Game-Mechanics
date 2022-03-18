@@ -1,7 +1,7 @@
 // the size of the sprite and grid cells (vmin units)
-const size = 9;
+const size = 5;
 // dimensions of the n x n grid, (only works with odd numbers)
-const gridSize = 9;
+const gridSize = 17;
 // initializes sprite position at the center of the grid
 let position = {
     x: (gridSize - 1) * size / 2, 
@@ -11,7 +11,7 @@ let position = {
 const bounds = {
     min: 0,
     max: (gridSize - 1) * size
-}
+};
 
 
 
@@ -88,8 +88,10 @@ function changeSize() {
 }
 
 function displaySprite() {
-    const sprite = document.createElement('div');
+    const sprite = document.createElement('img');
     sprite.id = 'sprite';
+    sprite.src = "https://cdn.onlinewebfonts.com/svg/img_527433.png";
+    sprite.alt = 'sprite';
     document.querySelector('#grid').append(sprite);
 
     sprite.style.height = size + 'vmin';
@@ -97,3 +99,6 @@ function displaySprite() {
     sprite.style.left   = position.x + 'vmin';
     sprite.style.bottom = position.y + 'vmin';
 }
+
+// house - "https://cdn.onlinewebfonts.com/svg/img_3.png"
+// circle - "https://cdn.onlinewebfonts.com/svg/img_527433.png"
