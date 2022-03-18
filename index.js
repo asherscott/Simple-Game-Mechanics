@@ -10,14 +10,12 @@ let position = {
 
 
 
-onStart()
-
-
+onStart();
 
 function onStart() {
     displayGrid();
     displaySprite();
-    manualGridMovement();
+    document.addEventListener('keydown', (event) => chooseDirection(event));
     window.addEventListener('resize', changeSize)
 }
 
@@ -25,8 +23,6 @@ function displayGrid() {
     const grid = document.createElement('div');
     grid.id = 'grid';
     document.querySelector('body').append(grid);
-
-
 
     let cellClass = 'darkerTile';
     let isDark = true;
@@ -50,36 +46,30 @@ function displayGrid() {
     }
 }
 
-function manualGridMovement() {
-    function chooseDirection() {
-        document.addEventListener('keydown', (event) => {
-            switch(event.key) {
-                case 'ArrowRight':
-                    move('x', 'left', true)
-                    break;
-                case 'ArrowLeft':
-                    move('x', 'left', false)
-                    break;
-                case 'ArrowUp':
-                    move('y', 'bottom', true)
-                    break;
-                case 'ArrowDown':
-                    move('y', 'bottom', false)
-                    break;
-            }
-        })
+function chooseDirection(event) {
+    switch(event.key) {
+        case 'ArrowRight':
+            move('x', 'left', true)
+            break;
+        case 'ArrowLeft':
+            move('x', 'left', false)
+            break;
+        case 'ArrowUp':
+            move('y', 'bottom', true)
+            break;
+        case 'ArrowDown':
+            move('y', 'bottom', false)
+            break;
     }
-    
-    function move(spriteAxis, windowAxis, moveMaxy) {
-        (moveMaxy === true) 
-        ? position[spriteAxis] += size
-        : position[spriteAxis] -= size;
-    
-        sprite.style[windowAxis] = position[spriteAxis] + 'vmin';
-    } 
-
-    chooseDirection()
 }
+
+function move(spriteAxis, windowAxis, moveMaxy) {
+    (moveMaxy === true) 
+    ? position[spriteAxis] += size
+    : position[spriteAxis] -= size;
+
+    sprite.style[windowAxis] = position[spriteAxis] + 'vmin';
+} 
 
 function changeSize() {
     document.querySelector('#grid').remove();
